@@ -1,7 +1,7 @@
-import 'package:flutter/services.dart';
-import 'package:eventify/eventify.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'dart:io' show Platform;
+
+import 'package:eventify/eventify.dart';
+import 'package:flutter/services.dart';
 
 class Razorpay {
   // Response codes from platform
@@ -25,11 +25,12 @@ class Razorpay {
   static const MethodChannel _channel = const MethodChannel('razorpay_flutter');
 
   // EventEmitter instance used for communication
-  late EventEmitter _eventEmitter;
+  final _eventEmitter = EventEmitter();
+  final String androidPackageName;
 
-  Razorpay() {
-    _eventEmitter = new EventEmitter();
-  }
+  Razorpay({
+    required this.androidPackageName,
+  }) {}
 
   /// Opens Razorpay checkout
   void open(Map<String, dynamic> options) async {
@@ -46,8 +47,7 @@ class Razorpay {
       return;
     }
     if (Platform.isAndroid) {
-      PackageInfo packageInfo = await PackageInfo.fromPlatform();
-      _channel.invokeMethod('setPackageName', packageInfo.packageName);
+      _channel.invokeMethod('setPackageName', androidPackageName);
     }
 
     var response = await _channel.invokeMethod('open', options);
