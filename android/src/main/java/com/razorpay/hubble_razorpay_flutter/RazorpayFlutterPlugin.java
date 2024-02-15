@@ -1,4 +1,4 @@
-package com.razorpay.razorpay_flutter;
+package com.razorpay.hubble_razorpay_flutter;
 
 import androidx.annotation.NonNull;
 
@@ -22,7 +22,7 @@ public class RazorpayFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
 
     private RazorpayDelegate razorpayDelegate;
     private ActivityPluginBinding pluginBinding;
-    private static String CHANNEL_NAME = "razorpay_flutter";
+    private static String CHANNEL_NAME = "hubble_razorpay_flutter";
 
 
     public RazorpayFlutterPlugin() {
@@ -60,11 +60,15 @@ public class RazorpayFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
     @SuppressWarnings("unchecked")
     public void onMethodCall(MethodCall call, Result result) {
 
-
+        System.out.println("[rzp] onMethodCall: " + call.method);
         switch (call.method) {
 
             case "open":
+
+
                 razorpayDelegate.openCheckout((Map<String, Object>) call.arguments, result);
+
+
                 break;
 
             case "setPackageName":

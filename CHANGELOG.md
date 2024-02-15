@@ -1,3 +1,7 @@
+# 2.0.1
+
+ - Temp support for v3 and some trimming of deps
+
 ## 1.3.4
 - Removed jcenter for android due to deprecation
 

@@ -1,8 +1,8 @@
 #import "RazorpayFlutterPlugin.h"
-#import <razorpay_flutter/razorpay_flutter-Swift.h>
+#import <hubble_razorpay_flutter/hubble_razorpay_flutter-Swift.h>
 
-@implementation RazorpayFlutterPlugin
+@implementation HubbleRazorpayFlutterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftRazorpayFlutterPlugin registerWithRegistrar:registrar];
+  [SwiftHubbleRazorpayFlutterPlugin registerWithRegistrar:registrar];
 }
 @end

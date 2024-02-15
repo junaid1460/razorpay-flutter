@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface RazorpayFlutterPlugin : NSObject<FlutterPlugin>
+@interface HubbleRazorpayFlutterPlugin : NSObject<FlutterPlugin>
 @end

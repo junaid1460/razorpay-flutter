@@ -1,7 +1,7 @@
 import Flutter
 import Razorpay
 
-public class RazorpayDelegate: NSObject, RazorpayPaymentCompletionProtocolWithData, ExternalWalletSelectionProtocol {
+public class HubbleRazorpayDelegate: NSObject, RazorpayPaymentCompletionProtocolWithData, ExternalWalletSelectionProtocol {
     
     static let CODE_PAYMENT_SUCCESS = 0
     static let CODE_PAYMENT_ERROR = 1
@@ -16,7 +16,7 @@ public class RazorpayDelegate: NSObject, RazorpayPaymentCompletionProtocolWithDa
     
     public func onExternalWalletSelected(_ walletName: String, withPaymentData paymentData: [AnyHashable : Any]?) {
         var response = [String:Any]()
-        response["type"] = RazorpayDelegate.CODE_PAYMENT_EXTERNAL_WALLET
+        response["type"] = HubbleRazorpayDelegate.CODE_PAYMENT_EXTERNAL_WALLET
         
         var data = [String:Any]()
         data["external_wallet"] = walletName
@@ -29,10 +29,10 @@ public class RazorpayDelegate: NSObject, RazorpayPaymentCompletionProtocolWithDa
     
     public func onPaymentError(_ code: Int32, description message: String, andData data: [AnyHashable : Any]?) {
         var response = [String:Any]()
-        response["type"] = RazorpayDelegate.CODE_PAYMENT_ERROR
+        response["type"] = HubbleRazorpayDelegate.CODE_PAYMENT_ERROR
         
         var errorData = [String:Any]()
-        errorData["code"] = RazorpayDelegate.translateRzpPaymentError(errorCode: Int(code))
+        errorData["code"] = HubbleRazorpayDelegate.translateRzpPaymentError(errorCode: Int(code))
         errorData["message"] = message 
         errorData["responseBody"] = data
         
@@ -42,7 +42,7 @@ public class RazorpayDelegate: NSObject, RazorpayPaymentCompletionProtocolWithDa
     
     public func onPaymentSuccess(_ payment_id: String, andData data: [AnyHashable: Any]?) {
         var response = [String:Any]()
-        response["type"] = RazorpayDelegate.CODE_PAYMENT_SUCCESS
+        response["type"] = HubbleRazorpayDelegate.CODE_PAYMENT_SUCCESS
         response["data"] = data
         
         pendingResult(response as NSDictionary)

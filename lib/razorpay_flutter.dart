@@ -22,7 +22,7 @@ class Razorpay {
   static const INCOMPATIBLE_PLUGIN = 4;
   static const UNKNOWN_ERROR = 100;
 
-  static const MethodChannel _channel = const MethodChannel('razorpay_flutter');
+  static const MethodChannel _channel = const MethodChannel('hubble_razorpay_flutter');
 
   // EventEmitter instance used for communication
   final _eventEmitter = EventEmitter();
@@ -36,7 +36,12 @@ class Razorpay {
   void open(Map<String, dynamic> options) async {
     Map<String, dynamic> validationResult = _validateOptions(options);
 
+    print(validationResult);
+    print(androidPackageName);
+
     if (!validationResult['success']) {
+
+      print(validationResult['message']);
       _handleResult({
         'type': _CODE_PAYMENT_ERROR,
         'data': {
@@ -47,8 +52,10 @@ class Razorpay {
       return;
     }
     if (Platform.isAndroid) {
-      _channel.invokeMethod('setPackageName', androidPackageName);
+       _channel.invokeMethod('setPackageName', androidPackageName);
     }
+
+
 
     var response = await _channel.invokeMethod('open', options);
     _handleResult(response);

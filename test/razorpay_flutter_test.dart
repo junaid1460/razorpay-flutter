@@ -1,10 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:hubble_razorpay_flutter/razorpay_flutter.dart';
 
 void main() {
   group("$Razorpay", () {
-    const MethodChannel channel = MethodChannel("razorpay_flutter");
+    const MethodChannel channel = MethodChannel("hubble_razorpay_flutter");
 
     final List<MethodCall> log = <MethodCall>[];
 
